@@ -18,6 +18,13 @@ namespace AUT02_02_CastrilloAlejandro_Listas.Models
             this.Family = value3;
             this.NChildren = value4;
         }
+        public Personaje()
+        {
+            this.Id=0;
+            this.Name = "";
+            this.Family = "";
+            this.NChildren = 0;
+        }
 
     }
 

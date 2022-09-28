@@ -26,8 +26,8 @@ namespace AUT02_02_CastrilloAlejandro_Listas.Controllers
         {
             if (ModelState.IsValid)
             {
-                agregarpersonaje(perso.Id, perso.Name, perso.Family, perso.NChildren);
-                RedirectToAction("index");
+                agregarpersonaje( perso.Name, perso.Family, perso.NChildren);
+                return RedirectToAction("Index");
             }
             return View(perso);
         }
@@ -35,12 +35,12 @@ namespace AUT02_02_CastrilloAlejandro_Listas.Controllers
         public void iniciarpersonajes()
         {
 
-            agregarpersonaje(1, "primero", "no se", 0);
-            agregarpersonaje(2, "segundo", "alguien", 0);
+            agregarpersonaje( "primero", "no se", 0);
+            agregarpersonaje( "segundo", "alguien", 0);
         }
-        public void agregarpersonaje(int Id,string Nombre,string Familia,int NChildren)
+        public void agregarpersonaje(string Nombre,string Familia,int NChildren)
         {
-            listaperson.Add(new Personaje(Id, Nombre, Familia, NChildren));
+            listaperson.Add(new Personaje(listaperson.Count+1, Nombre, Familia, NChildren));
         }
     }
 }
