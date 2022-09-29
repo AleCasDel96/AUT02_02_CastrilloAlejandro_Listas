@@ -10,13 +10,14 @@ namespace AUT02_02_CastrilloAlejandro_Listas.Controllers
         public static List<Personaje> listaperson = new List<Personaje>();
         public IActionResult Index()
         {
-            if (listaperson.Count == 0){ 
+            if (listaperson.Count == 0)
+            {
                 iniciarpersonajes();
             }
             return View(listaperson);
         }
 
-        public IActionResult Create() 
+        public IActionResult Create()
         {
             return View();
         }
@@ -26,7 +27,7 @@ namespace AUT02_02_CastrilloAlejandro_Listas.Controllers
         {
             if (ModelState.IsValid)
             {
-                agregarpersonaje( perso.Name, perso.Family, perso.NChildren);
+                agregarpersonaje(perso.Name, perso.Family, perso.NChildren);
                 return RedirectToAction("Index");
             }
             return View(perso);
@@ -35,12 +36,20 @@ namespace AUT02_02_CastrilloAlejandro_Listas.Controllers
         public void iniciarpersonajes()
         {
 
-            agregarpersonaje( "primero", "no se", 0);
-            agregarpersonaje( "segundo", "alguien", 0);
+            agregarpersonaje("primero", "no se", 0);
+            agregarpersonaje("segundo", "alguien", 0);
         }
-        public void agregarpersonaje(string Nombre,string Familia,int NChildren)
+        public void agregarpersonaje(string Nombre, string Familia, int NChildren)
         {
-            listaperson.Add(new Personaje(listaperson.Count+1, Nombre, Familia, NChildren));
+            if (listaperson.Count == 0)
+            {
+                listaperson.Add(new Personaje(1, Nombre, Familia, NChildren));
+            }
+            else
+            {
+                listaperson.Add(new Personaje(listaperson[listaperson.Count - 1].Id + 1, Nombre, Familia, NChildren));
+            }
+
         }
     }
 }
